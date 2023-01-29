@@ -1,0 +1,21 @@
+id: gallery_item_body
+label: Gallery body
+migration_tags:
+  - 'Gallery'
+  - 'Gallery paragraph'
+source:
+  plugin: d7_node
+  node_type: 'gallery'
+  constants:
+    type: 'text'
+process:
+  #id: nid
+  #revision: nid
+  type: 'constants/type'
+  status: status
+  created: created
+  changed: changed
+  field_text: body
+destination:
+  plugin: entity_complete:paragraph
+  translations: true

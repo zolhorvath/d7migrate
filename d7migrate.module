@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Hooks implemented on behalf of D7 Migrate module.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_migrate_process_info_alter().
+ */
+function d7migrate_migrate_process_info_alter(&$definitions) {
+  // If the 'file_copy_or_generate' migrate process plugin is available (so:
+  // Migrate Devel FileCopy is installed), we replace the 'file_copy'
+  // definition with 'file_copy_or_generate' – because we're probably testing
+  // migrations without having the source files.
+  // @see https://drupal.org/project/migrate_devel_file_copy
+  if (
+    !empty($definitions['file_copy_or_generate']) &&
+    !empty($definitions['file_copy'])
+  ) {
+    $definitions['file_copy'] = $definitions['file_copy_or_generate'];
+  }
+}

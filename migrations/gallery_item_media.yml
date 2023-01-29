@@ -1,0 +1,32 @@
+id: gallery_item_media
+label: Media
+migration_tags:
+  - 'Gallery'
+  - 'Gallery paragraph'
+source:
+  plugin: d7_node
+  node_type: 'gallery'
+  constants:
+    type: 'media'
+process:
+  #id: nid
+  #revision: nid
+  status: status
+  created: created
+  changed: changed
+  type: 'constants/type'
+  field_media:
+    plugin: sub_process
+    source: field_gallery_images
+    process:
+      target_id:
+        plugin: migration_lookup
+        source: nid
+        migration: media
+        no_stub: true
+destination:
+  plugin: entity_complete:paragraph
+  translations: true
+migration_dependencies:
+  required:
+    - media

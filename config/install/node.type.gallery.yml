@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+third_party_settings: {  }
+name: Gallery
+type: gallery
+description: ''
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: true

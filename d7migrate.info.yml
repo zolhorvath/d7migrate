@@ -1,0 +1,9 @@
+name: Migration Decorator
+type: module
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:migrate
+  - drupal:media
+  - drupal:paragraphs
+  - drupal:node
+  - drupal:field

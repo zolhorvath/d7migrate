@@ -1,0 +1,30 @@
+id: media
+label: Media
+migration_tags:
+  - 'Gallery'
+  - 'Gallery media'
+  - 'Gallery paragraph'
+source:
+  plugin: d7_node
+  node_type: 'gallery_image'
+  constants:
+    type: 'image'
+    uid: 1
+process:
+  mid: nid
+  bundle: 'constants/type'
+  label: title
+  field_media_image:
+    plugin: sub_process
+    source: field_image
+    process:
+      target_id: fid
+  status: status
+  created: created
+  changed: changed
+  uid: node_uid
+destination:
+  plugin: entity:media
+migration_dependencies:
+  required:
+    - file_image

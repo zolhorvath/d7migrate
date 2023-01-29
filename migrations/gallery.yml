@@ -1,0 +1,58 @@
+id: gallery
+label: Gallery
+migration_tags:
+  - 'Gallery'
+source:
+  plugin: d7_node
+  node_type: 'gallery'
+  constants:
+    paragraph_destination_keys: ['target_id', 'target_revision_id', 'langcode']
+process:
+  nid: tnid
+  vid: vid
+  status: status
+  created: created
+  changed: timestamp
+  revision_timestamp: timestamp
+  type: type
+  uid: node_uid
+  title: title
+
+  _body_paragraph_ids:
+    plugin: migration_lookup
+    source: nid
+    migration: gallery_item_body
+    no_stub: true
+  _body_paragraphs:
+    plugin: callback
+    callable: array_combine
+    unpack_source: true
+    source:
+      - 'constants/paragraph_destination_keys'
+      - '@_body_paragraph_ids'
+  _media_paragraph_ids:
+    plugin: migration_lookup
+    source: nid
+    migration: gallery_item_media
+    no_stub: true
+  _media_paragraphs:
+    plugin: callback
+    callable: array_combine
+    unpack_source: true
+    source:
+      - 'constants/paragraph_destination_keys'
+      - '@_media_paragraph_ids'
+
+  field_content:
+    plugin: callback
+    callable: array_merge
+    source:
+      - '@_body_paragraphs'
+      - '@_media_paragraphs'
+destination:
+  plugin: entity_complete:node
+  translations: true
+migration_dependencies:
+  required:
+    - gallery_item_body
+    - gallery_item_media

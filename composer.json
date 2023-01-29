@@ -1,0 +1,14 @@
+{
+  "name": "zolhorvath/d7migrate",
+  "description": "Migrate example: migrate node body and referenced entities into Paragraphs references",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/paragraphs": "^1.15"
+  },
+  "require-dev": {
+    "drupal/migmag": "^1.8",
+    "drupal/migrate_devel_file_copy": "^1@alpha",
+    "drupal/tecla": "^1@RC"
+  }
+}
